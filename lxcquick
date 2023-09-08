@@ -1,0 +1,23 @@
+#!/bin/bash
+
+IMAGE_NAME="jammy"
+LXC_NAME="quicktest"
+
+if [ $# -ge 1 ]; then
+	IMAGE_NAME=$1
+fi
+
+if [ $# -ge 2 ]; then
+	LXC_NAME=$2
+fi
+
+lxc launch "ubuntu:${IMAGE_NAME}" "${LXC_NAME}"
+lxc exec "${LXC_NAME}" -- sh -c "apt update && apt dist-upgrade -y"
+lxc exec "${LXC_NAME}" bash
+sleep 5
+
+if [ $# -lt 2 ]; then
+	echo "Stopping and deleting ${LXC_NAME}"
+	lxc stop "${LXC_NAME}"
+	lxc delete "${LXC_NAME}"
+fi
