@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE_NAME="jammy"
+IMAGE_NAME="noble"
 
 if [ $# -ge 1 ]; then
 	IMAGE_NAME=$1

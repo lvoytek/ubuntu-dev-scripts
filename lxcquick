@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE_NAME="jammy"
+IMAGE_NAME="noble"
 LXC_NAME="quicktest"
 
 if [ $# -ge 1 ]; then

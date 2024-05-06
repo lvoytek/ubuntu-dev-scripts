@@ -1,6 +1,6 @@
 #!/bin/bash
 
-release="jammy"
+release="noble"
 
 while getopts r:p:b: flag
 do
