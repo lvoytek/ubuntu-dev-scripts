@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+	echo "Include upstream version number"
+	exit 1
+fi
+
+package_name=$(dpkg-parsechangelog --show-field Source 2>/dev/null)
+
+if [[ -z "$package_name" ]]; then
+    echo "Package name not found or changelog is missing"
+    exit 1
+fi
+
+uscan --download-version $1 && \
+rm -rf $(ls -a1 | grep -v -e '^.git$' -e '^\.$' -e '^\.\.$' -e '^debian$' | xargs) && \
+tar xv --strip-components=1 -f $(ls ../${package_name}_$1*.orig.tar.*) && \
+git add -f . && \
+git commit -S -m "New upstream version $1"
