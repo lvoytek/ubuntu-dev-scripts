@@ -14,3 +14,6 @@ Create a virtual machine image of a given Ubuntu version to use for running auto
 
 #### [getsourcereversedepends](./getsourcereversedepends)
 Get the source package names for all reverse-dependencies of a binary package in an Ubuntu release.
+
+#### [updatepackagetoversion](./updatepackagetoversion)
+Forcibly update the upstream contents of a package in the current directory to that of the provided upstream version and commit the contents to git.
