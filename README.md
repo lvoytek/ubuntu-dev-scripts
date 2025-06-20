@@ -11,3 +11,6 @@ Run autopkgtest locally for an Ubuntu package on a given Ubuntu version, optiona
 
 #### [buildubuntutestimg](./buildubuntutestimg)
 Create a virtual machine image of a given Ubuntu version to use for running autopkgtests locally.
+
+#### [getsourcereversedepends](./getsourcereversedepends)
+Get the source package names for all reverse-dependencies of a binary package in an Ubuntu release.

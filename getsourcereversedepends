@@ -1,0 +1,22 @@
+#!/bin/bash
+
+release="noble"
+
+if [ $# -lt 1 ]; then
+	echo "Provide a binary package name"
+	exit 1
+fi
+
+pkgname="${@: -1}"
+
+while getopts r: flag
+do
+    case "${flag}" in
+        r) release=${OPTARG};;
+    esac
+done
+
+for binpkg in $(reverse-depends -r ${release} ${pkgname} | grep "*" | awk '{print $2}')
+do
+	apt show $binpkg 2>/dev/null | grep "Source:" | awk '{print $2}'
+done
