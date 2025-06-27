@@ -15,5 +15,8 @@ Create a virtual machine image of a given Ubuntu version to use for running auto
 #### [getsourcereversedepends](./getsourcereversedepends)
 Get the source package names for all reverse-dependencies of a binary package in an Ubuntu release.
 
+#### [rebuildallpackagesinfolder](./rebuildallpackagesinfolder)
+Prepare a no-change rebuild release with a ~ppa1 extension for every git-ubuntu sub-directory in the current directory. This is useful for testing reverse-depends of a package alongside getsourcereversedepends.
+
 #### [updatepackagetoversion](./updatepackagetoversion)
 Forcibly update the upstream contents of a package in the current directory to that of the provided upstream version and commit the contents to git.

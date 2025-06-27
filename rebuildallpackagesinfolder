@@ -1,0 +1,27 @@
+#!/bin/bash
+
+release="questing"
+
+pkgname="${@: -1}"
+
+while getopts r: flag
+do
+    case "${flag}" in
+        r) release=${OPTARG};;
+    esac
+done
+
+for dir in */; do
+    if [ -d "$dir" ]; then
+        echo "Processing $dir"
+        (
+            cd "$dir" || exit
+            git reset --hard
+            git clean -dfx
+            git ubuntu export-orig
+            dch -R -D "$release" "Rebuild for $release"
+            sed -i '1s/)/~ppa1)/' debian/changelog
+            dpkg-buildpackage -S -d
+        )
+    fi
+done
