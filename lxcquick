@@ -11,7 +11,7 @@ if [ $# -ge 2 ]; then
 	LXC_NAME=$2
 fi
 
-lxc launch "ubuntu:${IMAGE_NAME}" "${LXC_NAME}"
+lxc launch "ubuntu:${IMAGE_NAME}" "${LXC_NAME}" -c security.nesting=true
 lxc exec "${LXC_NAME}" -- sh -c "apt update && apt dist-upgrade -y"
 lxc exec "${LXC_NAME}" bash
 sleep 5
